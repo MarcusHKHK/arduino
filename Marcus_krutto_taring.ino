@@ -1,54 +1,155 @@
-#include <LiquidCrystal.h>
 /*Marcus Krutto */
-LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
-
-const int switchPin = 6;
-int switchState = 0;
-int prevSwitchState = 0;
+int a = 6;
+int b = 5;
+int c = 2;
+int d = 3;
+int e = 4;
+int f = 7;
+int g = 8;
 int reply;
-void setup() {
-  lcd.begin(16, 2);
-  pinMode(switchPin,INPUT);
-  lcd.print("Ask the");
-  lcd.setCursor(0, 1);
-  lcd.print("SMART Crystal Ball!");
+void setup()
+{
+  pinMode(a, OUTPUT);
+  pinMode(b, OUTPUT);
+  pinMode(c, OUTPUT);
+  pinMode(d, OUTPUT);
+  pinMode(e, OUTPUT);
+  pinMode(f, OUTPUT);
+  pinMode(g, OUTPUT);
+  chooseNum();
+  
 }
-void loop() {
-  switchState = digitalRead(switchPin);
-  if (switchState != prevSwitchState) {
-    if (switchState == LOW) {
-      reply = random(8);
-      lcd.clear();
-      lcd.setCursor(0, 0);
-      lcd.print("CRYSTAL BALL:");
-      lcd.setCursor(0, 1);
-      switch(reply){
-        case 0:
-        lcd.print("Yes");
-        break;
-        case 1:
-        lcd.print("Most likely");
-        break;
-        case 2:
-        lcd.print("Certainly");
-        break;
-        case 3:
-        lcd.print("Outlook good");
-        break;
-        case 4:
-        lcd.print("Unsure");
-		break;
-		case 5:
-		lcd.print("Ask again");
-		break;
-		case 6:
-		lcd.print("Doubtful");
-		break;
-		case 7:
-		lcd.print("No");
-		break;
-        }
+void two()
+{
+  digitalWrite(a,HIGH);
+  digitalWrite(b,HIGH);
+  digitalWrite(c,LOW);
+  digitalWrite(d,HIGH);
+  digitalWrite(e,HIGH);
+  digitalWrite(f,LOW);
+  digitalWrite(g,HIGH);
+  delay(1000);
+}
+void three()
+{
+  digitalWrite(a,HIGH);
+  digitalWrite(b,HIGH);
+  digitalWrite(c,HIGH);
+  digitalWrite(d,HIGH);
+  digitalWrite(e,LOW);
+  digitalWrite(f,LOW);
+  digitalWrite(g,HIGH);
+  delay(1000);
+}
+void four()
+{
+  digitalWrite(a,LOW);
+  digitalWrite(b,HIGH);
+  digitalWrite(c,HIGH);
+  digitalWrite(d,LOW);
+  digitalWrite(e,LOW);
+  digitalWrite(f,HIGH);
+  digitalWrite(g,HIGH);
+  delay(1000);
+}
+void five()
+{
+  digitalWrite(a,HIGH);
+  digitalWrite(b,LOW);
+  digitalWrite(c,HIGH);
+  digitalWrite(d,HIGH);
+  digitalWrite(e,LOW);
+  digitalWrite(f,HIGH);
+  digitalWrite(g,HIGH);
+  delay(1000);
+}
+void six()
+{
+  digitalWrite(a,HIGH);
+  digitalWrite(b,LOW);
+  digitalWrite(c,HIGH);
+  digitalWrite(d,HIGH);
+  digitalWrite(e,HIGH);
+  digitalWrite(f,HIGH);
+  digitalWrite(g,HIGH);
+  delay(1000);
+}
+void seven()
+{
+  digitalWrite(a,HIGH);
+  digitalWrite(b,HIGH);
+  digitalWrite(c,HIGH);
+  digitalWrite(d,LOW);
+  digitalWrite(e,LOW);
+  digitalWrite(f,LOW);
+  digitalWrite(g,LOW);
+  delay(1000);
+}
+void eight()
+{
+  digitalWrite(a,HIGH);
+  digitalWrite(b,HIGH);
+   digitalWrite(c,HIGH);
+  digitalWrite(d,HIGH);
+   digitalWrite(e,HIGH);
+  digitalWrite(f,HIGH);
+   digitalWrite(g,HIGH);
+  delay(1000);
+}
+void nine()
+{
+  digitalWrite(a,HIGH);
+  digitalWrite(b,HIGH);
+  digitalWrite(c,HIGH);
+  digitalWrite(d,LOW);
+  digitalWrite(e,LOW);
+  digitalWrite(f,HIGH);
+  digitalWrite(g,HIGH);
+  delay(1000);
+}
+  void one()
+{
+  digitalWrite(a,LOW);
+  digitalWrite(b,HIGH);
+  digitalWrite(c,HIGH);
+  digitalWrite(d,LOW);
+  digitalWrite(e,LOW);
+  digitalWrite(f,LOW);
+  digitalWrite(g,LOW);
+  delay(1000);
+}
+void chooseNum() {
+  int randNum = random(1,7);
+  Serial.begin(9600);
+  Serial.println(randNum);
+    
+    if (randNum == 1) {
+      one();
     }
-  }
-  prevSwitchState = switchState;
+    
+    if (randNum == 2) {
+      two();
+    }
+    
+    if (randNum == 3) {
+      three();
+    }
+    
+    if (randNum == 4) {
+      four();
+    }
+    
+    if (randNum == 5) {
+      five();
+    }
+    
+    if (randNum == 6) {
+      six();
+    }
+}
+void loop(){
+  Serial.begin(9600);
+	chooseNum();
+	Serial.print("Kontroll, kas kood tootab.");
+	delay(2000);
 }
